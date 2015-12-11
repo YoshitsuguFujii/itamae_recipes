@@ -1,0 +1,37 @@
+{
+  "user": "yoshitsugu",
+  "git": {
+    "name": "yoshitsugu_fujii",
+    "email": "ishikurasakura@gmail.com"
+  },
+  "rtn_rbenv": {
+    "user": "yoshitsugu",
+    "versions": {
+      "2.2.3": [
+        {
+          "name": "bundler",
+          "version": "1.7.3",
+          "force": true
+        },
+        "pry",
+        "compass",
+        "sass"
+      ]
+    },
+    "global": "2.2.3"
+  },
+  "ndenv": {
+    "user": "yoshitsugu",
+    "versions": [
+      "v5.2.0"
+    ],
+    "global": "v0.12.7"
+  },
+  "goenv": {
+    "user": "yoshitsugu",
+    "versions": [
+      "1.5"
+    ],
+    "global": "1.5"
+  }
+}
