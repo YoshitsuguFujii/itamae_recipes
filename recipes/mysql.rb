@@ -29,14 +29,15 @@ execute "set db charset to utf8mb4" do
   command <<-EOF
     echo '#{utf8mb4_settting}' >> /etc/my.cnf
   EOF
+  not_if "cat /etc/my.cnf | grep '#{utf8mb4_settting.split("\n").last}'"
 end
 
 service 'mysqld' do
   action [:start, :enable]
 end
 
-execute "allow remote host access" do
-  # MySQLにリモートホストから接続できるようにする -> http://xyk.hatenablog.com/entry/2013/11/08/142548
-  command "mysql -e \"grant all privileges on *.* to root@'192.168.%'\"";
-end
+#execute "allow remote host access" do
+#  # MySQLにリモートホストから接続できるようにする -> http://xyk.hatenablog.com/entry/2013/11/08/142548
+#  command "mysql -e \"grant all privileges on *.* to root@'192.168.%'\"";
+#end
 

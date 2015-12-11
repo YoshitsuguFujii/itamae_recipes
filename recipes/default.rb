@@ -13,7 +13,8 @@ package "libxslt-devel"
 package "lsof"
 
 execute "change default shell to zsh" do
-  command "usermod -s /bin/zsh vagrant"
+  user node[:user]
+  command "sudo usermod -s /bin/zsh #{node[:user]}"
 end
 
 package "ctags"
@@ -38,10 +39,11 @@ end
 
 include_recipe 'git.rb'
 include_recipe 'mysql.rb'
-include_recipe 'rtn_rbenv::user'
+include_recipe 'rtn_rbenv::system'
 include_recipe 'node_build.rb'
 include_recipe 'npm.rb'
 include_recipe 'golang_build.rb'
+include_recipe 'audit.rb'
 
 execute "install peco" do
   command "source ~/.zshenv && go get github.com/peco/peco/cmd/peco"
@@ -52,9 +54,10 @@ end
 ######## 設定に関するブロック
 %w(.zshrc .vimrc).each do |rc|
   remote_file "/home/#{node[:user]}/#{rc}" do
+    user node[:user]
     source "./remote_files/#{rc}"
     owner node[:user]
-    group node[:user]
+    group node[:group]
   end
 end
 
@@ -67,17 +70,20 @@ export PATH="$RBENV_ROOT/bin:$RBENV_ROOT/shims:$PATH"
 eval "$(rbenv init -)"
 EOS
 execute "add path to zshenv" do
+  user node[:user]
   command <<-EOF
     echo '#{zshenv_setting}' >> /home/#{node[:user]}/.zshenv
     chown #{node[:user]}:#{node[:user]} /home/#{node[:user]}/.zshenv
   EOF
+  not_if "cat /home/#{node[:user]}/.zshenv | grep '#{zshenv_setting.split("\n").first}'"
 end
 
 # vim persistent_undo
 directory "~/.vimundo" do
+  user node[:user]
   action :create # デフォルトのため記載不要だが書いたほうが可読性が高い
   owner node[:user]
-  group node[:user]
+  group node[:group]
 end
 
 

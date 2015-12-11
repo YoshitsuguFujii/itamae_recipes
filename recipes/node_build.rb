@@ -16,12 +16,10 @@ git "#{NDENV_DIR}/plugins/node-build" do
   repository "git://github.com/riywo/node-build.git"
 end
 
-if node['ndenv']['user'] == 'vagrant'
-  execute "set owner and mode for #{NDENV_DIR}" do
-    command <<-EOH
-      chown -R vagrant: #{NDENV_DIR}
-      EOH
-  end
+execute "set owner and mode for #{NDENV_DIR}" do
+  command <<-EOH
+    chown -R #{node[:user]}: #{NDENV_DIR}
+    EOH
 end
 
 execute "expose ndenv path" do
@@ -40,7 +38,7 @@ node["ndenv"]["versions"].each do |version|
         ndenv rehash
         EOH
     user node['ndenv']['user'] if user node['ndenv']['user']
-    not_if "ndenv versions | grep #{version}"
+    not_if "source #{NDENV_SCRIPT}; ndenv versions | grep #{version}"
   end
 end
 
@@ -60,4 +58,5 @@ execute "set environemt variables" do
     echo 'export PATH="#{NDENV_DIR}/bin:$PATH"' >> /home/#{node[:user]}/.zshenv
     echo 'eval "$(ndenv init -)"'  >> /home/#{node[:user]}/.zshenv
   EOH
+  not_if "cat /home/#{node[:user]}/.zshenv | grep 'export NODE_ENV'"
 end

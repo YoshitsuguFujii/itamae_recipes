@@ -1,0 +1,5 @@
+# be itamae ssh -h 192.168.1.55 --user vagrant --log-level debug --node-json nodes/node.json recipes/default.rb
+
+
+be itamae ssh -h 192.168.1.55 --user vagrant --node-json nodes/node.json recipes/user.rb
+be itamae ssh -h 192.168.1.55 --user yoshitsugu --node-json nodes/node.json recipes/default.rb
