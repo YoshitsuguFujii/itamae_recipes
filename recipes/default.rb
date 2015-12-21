@@ -44,6 +44,7 @@ include_recipe 'node_build.rb'
 include_recipe 'npm.rb'
 include_recipe 'golang_build.rb'
 include_recipe 'audit.rb'
+include_recipe 'postfix.rb'
 
 execute "install peco" do
   command "source ~/.zshenv && go get github.com/peco/peco/cmd/peco"

@@ -1,0 +1,17 @@
+<% if node['postfix']['myhostname'] %>
+myhostname = <%= node['postfix']['myhostname'] %>
+<% end %>
+
+<% if node['postfix']['mydomain'] %>
+mydomain = <%= node['postfix']['mydomain'] %>
+<% end %>
+myorigin = <%= node['postfix']['myorigin'] %>
+inet_interfaces = <%= node['postfix']['inet_interfaces'] %>
+inet_protocols = <%= node['postfix']['inet_protocols'] %>
+mydestination = <%= node['postfix']['mydestination'] %>
+mynetworks = <%= node['postfix']['mynetworks'] %>
+<%= node['postfix']['relay'] %>
+
+home_mailbox = Maildir/
+smtpd_recipient_restrictions = permit_mynetworks
+                               reject_unauth_destination
