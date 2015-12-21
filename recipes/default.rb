@@ -43,7 +43,7 @@ include_recipe 'rtn_rbenv::system'
 include_recipe 'node_build.rb'
 include_recipe 'npm.rb'
 include_recipe 'golang_build.rb'
-include_recipe 'audit.rb'
+# include_recipe 'audit.rb'
 include_recipe 'postfix.rb'
 
 execute "install peco" do

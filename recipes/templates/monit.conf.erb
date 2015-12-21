@@ -1,0 +1,12 @@
+set daemon 60
+
+set logfile /var/log/monit.log
+
+set mailserver localhost
+
+set alert ishikurasakura@gmail.com not on { INSTANCE, ACTION, TIMEOUT, NONEXIST }
+
+set httpd port 2812
+  allow localhost
+
+include /etc/monit.d/*
