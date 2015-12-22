@@ -1,3 +1,21 @@
+# SELinux disabled
+execute 'setenforce 0' do
+  not_if 'getenforce | grep Disabled'
+end
+
+file '/etc/selinux/config' do
+  action :edit
+  block do |content|
+    next if content =~ /^SELINUX=disabled/
+    content.gsub!(/^SELINUX=.*/, "SELINUX=disabled")
+  end
+end
+
+# update
+execute "update yum repo" do
+  command "yum -y update"
+end
+
 package "epel-release"
 package "gcc"
 package "openssl-devel"
