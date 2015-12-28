@@ -1,3 +1,12 @@
+execute "change time zone" do
+  user node[:user]
+  command <<-EOF
+    sudo cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+  EOF
+  not_if "date | grep 'JST'"
+end
+
+
 # SELinux disabled
 execute 'setenforce 0' do
   not_if 'getenforce | grep Disabled'
