@@ -50,3 +50,17 @@ template "/etc/sudoers" do
   owner  "root"
   group  "root"
 end
+
+file "/etc/ssh/sshd_config" do
+  action :edit
+  user "root"
+  group "root"
+  block do |content|
+    content.gsub!(/^PasswordAuthentication .+$/, "PasswordAuthentication no")
+    content.gsub!(/^PermitRootLogin.+$/, "PermitRootLogin no")
+  end
+end
+
+service 'sshd' do
+  action :restart
+end
