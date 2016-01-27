@@ -4,7 +4,8 @@ set logfile /var/log/monit.log
 
 set mailserver localhost
 
-set alert ishikurasakura@gmail.com not on { INSTANCE, ACTION, TIMEOUT, NONEXIST }
+#set alert ishikurasakura@gmail.com not on { INSTANCE, ACTION, TIMEOUT, NONEXIST }
+set alert ishikurasakura@gmail.com
 
 set httpd port 2812
   allow localhost

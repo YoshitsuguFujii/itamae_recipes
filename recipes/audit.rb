@@ -2,7 +2,8 @@ package "monit"
 
 slackbot_setting = <<"EOS"
 check process slackbot with pidfile /home/yoshitsugu/go/my-project/slackbot/current/tmp.pid
-  start program = "/home/yoshitsugu/go/my-project/slackbot/current/bin/start.sh" as uid #{node[:user]} and gid #{node[:group]}
+  start program = "/home/yoshitsugu/go/my-project/slackbot/current/bin/start.sh"
+    as uid #{node[:user]} and gid #{node[:group]}
   if 5 restart within 5 cycles then timeout
 EOS
 
