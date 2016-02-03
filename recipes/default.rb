@@ -6,6 +6,13 @@ execute "change time zone" do
   not_if "date | grep 'JST'"
 end
 
+# cronとlogにも反映(再起動)
+%w(crond rsyslog).each do |serv|
+  service serv do
+    action :restart
+  end
+end
+
 
 # SELinux disabled
 execute 'setenforce 0' do
