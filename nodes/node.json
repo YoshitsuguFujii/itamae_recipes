@@ -49,13 +49,20 @@
     ],
     "global": "1.5"
   },
-  "postfix":
-    {
-      "myorigin": "$mydomain",
-      "inet_interfaces": "127.0.0.1",
-      "inet_protocols": "ipv4",
-      "mydestination": "$myhostname, localhost.$mydomain, localhost, $mydomain",
-      "mynetworks": "127.0.0.0/8",
-      "relay": ""
+  "postfix": {
+    "myorigin": "$mydomain",
+    "inet_interfaces": "127.0.0.1",
+    "inet_protocols": "ipv4",
+    "mydestination": "$myhostname, localhost.$mydomain, localhost, $mydomain",
+    "mynetworks": "127.0.0.0/8",
+    "relay": ""
+  },
+  "slack": {
+    "audit": {
+      "url": "https://hooks.slack.com/services/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",
+      "channel": "#test",
+      "name": "Hoge",
+      "icon": ":ghost:"
     }
+  }
 }

@@ -1,0 +1,17 @@
+#!/bin/sh
+#WebHookUrl
+WEBHOOKURL="<%= node['slack']['audit']['url'] %>"
+
+#Slack送信チャンネル
+CHANNEL=${CHANNEL:-"<%= node['slack']['audit']['channel'] %>"}
+
+#Slack送信名
+BOTNAME=${BOTNAME:-"<%= node['slack']['audit']['name'] %>"}
+
+#Slackアイコン
+FACEICON=${FACEICON:-"<%= node['slack']['audit']['icon'] %>"}
+
+#Slackメッセージ
+MESSAGE=${MESSAGE:-"$1が$2から$3にログインしました"}
+
+curl -s -S -X POST --data-urlencode "payload={\"channel\": \"${CHANNEL}\", \"username\": \"${BOTNAME}\", \"icon_emoji\": \"${FACEICON}\", \"text\": \"${MESSAGE}${WEBMESSAGE}\" }" ${WEBHOOKURL} >/dev/null

@@ -26,3 +26,18 @@ end
 service "monit" do
   action %i(enable start)
 end
+
+# ログインslack通知
+template '/etc/ssh/sshlogin.sh' do
+  source "templates/sshlogin.sh.erb"
+  owner "root"
+  group "root"
+  mode "777"
+end
+
+template '/etc/ssh/sshrc' do
+  source "templates/sshrc.erb"
+  owner "root"
+  group "root"
+  mode "644"
+end
