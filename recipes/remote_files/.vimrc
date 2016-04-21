@@ -17,7 +17,6 @@
   set wildmenu                   " コマンドライン補完を拡張モードにする
   set wildmode=list:longest,full " コマンドライン補完を拡張モードにする
   set autoread                   " 他で書き換えられたら自動で読み直す
-  set foldmethod=marker          " 折りたたみ
   set formatoptions=lmoq         " テキスト整形オプション，マルチバイト系を追加
   set showcmd                    " コマンドをステータス行に表示
   set whichwrap=b,s,h,l,<,>,[,]  " カーソルを行頭、行末で止まらないようにする

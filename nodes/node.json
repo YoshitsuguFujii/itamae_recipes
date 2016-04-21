@@ -57,6 +57,11 @@
     "mynetworks": "127.0.0.0/8",
     "relay": ""
   },
+  "nginx": {
+    "group_name": "nginx",
+    "gid": 55398,
+    "user_name": "nginx"
+  },
   "slack": {
     "audit": {
       "url": "https://hooks.slack.com/services/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",

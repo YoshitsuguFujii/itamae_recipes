@@ -1,6 +1,15 @@
 # be itamae ssh -h 192.168.1.55 --user vagrant --log-level debug --node-json nodes/node.json recipes/default.rb
+# vagrant
 
+sudo yum -y install http://vault.centos.org/6.5/updates/x86_64/Packages/kernel-devel-2.6.32-431.3.1.el6.x86_64.rpm
+sudo yum -y install gcc
+sudo /etc/init.d/vboxadd setup
+
+
+
+# be itamae ssh -h 192.168.1.55 --user vagrant --log-level debug --node-json nodes/node.json recipes/default.rb
 
 be itamae ssh -h 192.168.1.55 --user vagrant --node-json nodes/node.json recipes/user.rb
 be itamae ssh -h 192.168.1.55 --user yoshitsugu --node-json nodes/node.json recipes/default.rb
 be itamae ssh -h 192.168.1.55 --user yoshitsugu --node-json nodes/node.json recipes/audit.rb
+be itamae ssh -h 192.168.1.55 --user yoshitsugu --log-level debug --node-json nodes/node.json recipes/nginx.rb
