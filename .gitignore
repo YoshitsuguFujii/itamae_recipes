@@ -2,4 +2,4 @@
 vendor
 .DS_Store
 secret.yml
-
+.vagrant

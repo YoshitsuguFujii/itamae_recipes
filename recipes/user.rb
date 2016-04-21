@@ -52,12 +52,19 @@ template "/etc/sudoers" do
 end
 
 file "/etc/ssh/sshd_config" do
+  mode "777"
+  user "root"
+  group "root"
+end
+
+file "/etc/ssh/sshd_config" do
   action :edit
   user "root"
   group "root"
+  mode "600"
   block do |content|
     content.gsub!(/^PasswordAuthentication .+$/, "PasswordAuthentication no")
-    content.gsub!(/^PermitRootLogin.+$/, "PermitRootLogin no")
+    #content.gsub!(/^PermitRootLogin.+$/, "PermitRootLogin no")
   end
 end
 
